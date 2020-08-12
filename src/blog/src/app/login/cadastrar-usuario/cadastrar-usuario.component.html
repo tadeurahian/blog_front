@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-form-field>
+        <mat-label>Usuário</mat-label>
+        <input name="usuario" matInput [ngModel]="usuario" (ngModelChange)="atualizarUsuario($event)">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input name="senha" matInput type="password" [ngModel]="senha" (ngModelChange)="atualizarSenha($event)">
+    </mat-form-field>
+    
+    <div>
+        <button class="botao-cadastrar" mat-raised-button color="primary" (click)="criarUsuario()">Cadastrar</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+    grid-template-rows: auto auto auto auto;    
+    
+    width: 33vw;
+    height: 33vh;
+    padding: 15px;    
+
+    align-self: center;
+    justify-self: center;
+
+    .botao-cadastrar {
+        float: right;
+    }
+}

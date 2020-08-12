@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    grid-template-rows: auto auto auto min-content;    
+    
+    width: 33vw;
+    height: 29vh;
+    padding: 15px;    
+
+    align-self: center;
+    justify-self: center;
+        
+    border-radius: 10px;
+    border: solid 0.5px lightskyblue;
+    box-shadow: 1px 1px 1px;
+
+    .botao-senha {
+        float: right;
+    }
+
+    .link-cadastrar {
+        font-size: 12px;
+        margin-top: 5px;        
+    }
+}
