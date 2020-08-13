@@ -1,0 +1,24 @@
+<div class="main-container">
+    <mat-card>
+        <mat-card-title>
+            Criar Post
+        </mat-card-title>
+        <mat-card-content>
+            <div class="inner-container">
+                <mat-form-field class="form">
+                    <mat-label>Título</mat-label>
+                    <input id="titulo" name="titulo" matInput [ngModel]="titulo" (ngModelChange)="atualizarTitulo($event)">
+                </mat-form-field>
+
+                <mat-form-field class="form-conteudo">
+                    <mat-label>Conteúdo</mat-label>
+                    <textarea id="texto" name="textp" matInput [ngModel]="texto" (ngModelChange)="atualizarTexto($event)"></textarea>
+                </mat-form-field>
+
+                <input type="file" multiple (change)="armazenarImagens($event.target.files)">
+            </div>
+
+            <button class="botao-criar" mat-raised-button color="primary" (click)="criarPost()">Criar</button>
+        </mat-card-content>        
+    </mat-card>
+</div>

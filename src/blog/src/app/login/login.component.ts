@@ -4,6 +4,8 @@ import { CadastrarUsuarioComponent } from './cadastrar-usuario/cadastrar-usuario
 import { UsuarioService } from '../shared/services/usuario/usuario.service';
 import { StorageService } from '../shared/services/storage/storage.service';
 import { Constantes } from '../shared/constantes';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-login]',
@@ -12,10 +14,14 @@ import { Constantes } from '../shared/constantes';
 })
 export class LoginComponent implements OnInit {
 
-  public senha : string = '';
-  public usuario : string = '';
+  public senha: string = '';
+  public usuario: string = '';
 
-  constructor(public dialog: MatDialog, public usuarioService : UsuarioService, public storage : StorageService) { }
+  constructor(public dialog: MatDialog, 
+              public usuarioService: UsuarioService, 
+              public storage: StorageService, 
+              public snackBar: MatSnackBar,
+              public router : Router) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +30,16 @@ export class LoginComponent implements OnInit {
     this.dialog.open(CadastrarUsuarioComponent);
   }
 
-  autenticar() {      
+  autenticar() {
     this.usuarioService.autenticar(this.usuario, this.senha).subscribe((retorno) => {
-      if(retorno.sucesso) {
+      if (retorno.sucesso) {
         this.storage.armazenar(Constantes.CHAVE_STORAGE_AUTH, retorno.resultado);
+        this.router.navigate(["/"]);
+      } else {
+        this.snackBar.open(retorno.mensagem, "Fechar");
       }
+    }, (err) => {      
+      this.snackBar.open(err.error, "Fechar");
     });
   }
 

@@ -1,10 +1,10 @@
 <div class="container">
-    <mat-form-field>
+    <mat-form-field class="form">
         <mat-label>Usuário</mat-label>
         <input name="usuario" matInput [ngModel]="usuario" (ngModelChange)="atualizarUsuario($event)">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="form">
         <mat-label>Senha</mat-label>
         <input name="senha" matInput type="password" [ngModel]="senha" (ngModelChange)="atualizarSenha($event)">
     </mat-form-field>

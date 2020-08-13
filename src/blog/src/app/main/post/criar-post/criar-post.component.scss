@@ -1,0 +1,40 @@
+
+.main-container {    
+    display: grid;
+
+    width: 60vw;
+    height: 50vh;
+    padding: 15px;    
+
+    align-self: center;
+    justify-self: center;    
+
+    grid-template-rows: auto;
+
+    .inner-container {
+        display: grid;
+        
+        grid-template-rows: auto auto auto;
+
+        align-self: center;
+        justify-self: center;    
+
+        #titulo {
+            margin-top: 10px;
+        }
+
+        .form-conteudo {            
+            margin-top: 10px;
+
+            #texto {                
+                height: 26vh;
+            }
+        }        
+    }
+    
+    .botao-criar {
+        float: right;
+        margin-top: 10px;
+    }
+}
+
