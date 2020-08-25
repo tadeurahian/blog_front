@@ -12,7 +12,12 @@
 
                 <mat-form-field class="form-conteudo">
                     <mat-label>Conteúdo</mat-label>
-                    <textarea id="texto" name="textp" matInput [ngModel]="texto" (ngModelChange)="atualizarTexto($event)"></textarea>
+                    <textarea id="texto" name="texto" matInput [ngModel]="texto" (ngModelChange)="atualizarTexto($event)"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="form-conteudo">
+                    <mat-label>Link</mat-label>
+                    <input id="link" name="link" matInput [ngModel]="link" (ngModelChange)="atualizarLink($event)">
                 </mat-form-field>
 
                 <input type="file" multiple (change)="armazenarImagens($event.target.files)">

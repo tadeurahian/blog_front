@@ -7,11 +7,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule, MatCardFooter } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
+import { ListarPostsComponent } from './listar-posts/listar-posts.component';
+import { SliderModule } from 'angular-image-slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [CriarPostComponent],
+  declarations: [CriarPostComponent, ListarPostsComponent],
+  exports: [ListarPostsComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -19,7 +21,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,    
     MatCardModule,        
     FormsModule,    
-    MatSnackBarModule
+    MatSnackBarModule,
+    SliderModule,
+    BrowserAnimationsModule
   ]
 })
 export class PostModule { }

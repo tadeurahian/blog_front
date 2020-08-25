@@ -4,18 +4,19 @@ import { RetornoPadrao } from '../../models/retorno-padrao.model';
 import { Imagem } from '../../models/imagem.model';
 import { Util } from '../../util';
 import { environment } from '../../../../environments/environment';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { Post } from '../../models/post.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private ROTA_CRIAR_POST = 'post';
+  private ROTA_POST = 'post';
 
   constructor(private httpClient: HttpClient) { }
 
-  criarPost(titulo, texto, imagens: FileList) {
+  criarPost(titulo, texto, imagens: FileList, link) {
     return new Promise((resolve) => {
       var imagensBaixadas: Imagem[] = new Array<Imagem>();
       var promessas: Array<Promise<void>> = new Array<Promise<void>>();
@@ -29,14 +30,19 @@ export class PostService {
       }
 
       Promise.all(promessas).then(() => {
-        this.httpClient.post(environment.backend + this.ROTA_CRIAR_POST, {
+        this.httpClient.post(environment.backend + this.ROTA_POST, {
           titulo: titulo,
           texto: texto,
-          imagens: imagensBaixadas
+          imagens: imagensBaixadas,
+          link: link
         }).subscribe((retorno) => {
           resolve(retorno);
         });
       });
     });
+  }
+
+  obterPosts() : Observable<RetornoPadrao<Post[]>> {
+    return this.httpClient.get<RetornoPadrao<Post[]>>(environment.backend + this.ROTA_POST);
   }
 }

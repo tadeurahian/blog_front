@@ -1,0 +1,36 @@
+
+.main-container {    
+    display: grid;
+
+    width: 60vw;
+    height: 100%;
+    overflow: auto;
+    padding: 15px;    
+
+    align-self: center;
+    justify-self: center;    
+
+    grid-template-rows: auto;
+
+    .post {
+        margin-top: 5vh;
+        margin-bottom: 5vh;       
+
+        .imagens {
+            width: 100%;
+        }
+
+        .conteudo {
+            margin-top: 10px;
+            font-size: 24px;
+
+            line-height: 28px;
+        }
+
+        .link {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
