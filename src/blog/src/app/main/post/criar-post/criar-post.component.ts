@@ -24,8 +24,6 @@ export class CriarPostComponent implements OnInit {
   }
 
   criarPost() {
-    debugger;
-
     this.postService.criarPost(this.titulo, this.texto, this.imagens, this.link).then((retorno : RetornoPadrao<string>) => {
       if(retorno.sucesso) {        
         this.router.navigate(["/"]);

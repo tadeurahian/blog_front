@@ -28,7 +28,6 @@ export class ListarPostsComponent implements OnInit {
     private snackBar: MatSnackBar,) { }
 
   ngOnInit() {
-    debugger;
     this.postsService.obterPosts().subscribe((retorno) => {
       if (retorno.sucesso) {
         this.posts = retorno.resultado;
