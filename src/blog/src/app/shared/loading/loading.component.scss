@@ -1,0 +1,35 @@
+.overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    z-index: 99999;
+    display: flex;
+    
+    .imagem-loading{
+      width: 100%;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+  
+  :host ::ng-deep .spinner {
+    margin: auto;
+  
+    circle {
+      stroke: blue;
+      width: 25px;
+      height: 25px;
+    }
+  }
+  
+  [hidden] {
+    display: none !important;
+  }
+  

@@ -13,10 +13,15 @@ import { PostModule } from './main/post/post.module';
 import { PostService } from './shared/services/post/post.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BlogHttpInterceptor } from './shared/interceptors/http.interceptor';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoadingComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -25,13 +30,19 @@ import { BlogHttpInterceptor } from './shared/interceptors/http.interceptor';
     LoginModule,
     MainModule,
     PostModule,
-    HttpClientModule    
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [UsuarioService, AuthGuard, PostService, {
     provide: HTTP_INTERCEPTORS,
     useClass: BlogHttpInterceptor,
     multi: true,
-   }],
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
