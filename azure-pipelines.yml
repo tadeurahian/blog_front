@@ -19,16 +19,16 @@ steps:
 - script: |
     npm install
   displayName: 'Install Dependencies'
-  workingDirectory: blog
+  workingDirectory: src/blog
 
 - script: |
     ng build
   displayName: 'Build'
-  workingDirectory: blog
+  workingDirectory: src/blog
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'blog/dist/blog'
+    rootFolderOrFile: 'src/blog/dist/blog'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/drop.zip'
