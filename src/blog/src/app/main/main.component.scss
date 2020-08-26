@@ -1,5 +1,9 @@
-.container-adicionar-post {
+.container-interacoes {
     position: fixed;
     bottom: 20px;
     right: 20px;
+
+    .adicionar-post {
+        margin-right: 10px;
+    }
 }

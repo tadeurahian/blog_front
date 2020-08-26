@@ -1,7 +1,12 @@
 <app-listar-posts></app-listar-posts>
 
-<div class="container-adicionar-post">
-    <button mat-fab color="primary" (click)="navegarParaTelaDeCriarPosts()">
+<div class="container-interacoes">
+    <button mat-fab color="primary" class="adicionar-post" (click)="navegarParaTelaDeCriarPosts()">
         <mat-icon>add</mat-icon>
     </button>
+
+    <button mat-fab color="delete" (click)="deslogar()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>    
 </div>
+

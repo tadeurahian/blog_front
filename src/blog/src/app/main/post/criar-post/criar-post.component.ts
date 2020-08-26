@@ -32,7 +32,7 @@ export class CriarPostComponent implements OnInit {
       }
 
       this.snackBar.open(retorno.mensagem, "Fechar");
-    }, err => {
+    }).catch(err => {
       this.snackBar.open(err.error, "Fechar");
     });
   }

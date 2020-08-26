@@ -17,17 +17,19 @@ export class PostService {
   constructor(private httpClient: HttpClient) { }
 
   criarPost(titulo, texto, imagens: FileList, link) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       var imagensBaixadas: Imagem[] = new Array<Imagem>();
       var promessas: Array<Promise<void>> = new Array<Promise<void>>();
 
-      for (var indice = 0; indice < imagens.length; indice++) {        
-        var promessa = Util.lerDadosImagem(imagens[indice]).then((imagem: Imagem) => {
-          imagensBaixadas.push(imagem);
-        });
-
-        promessas.push(promessa);
-      }
+      if (imagens != null) {
+        for (var indice = 0; indice < imagens.length; indice++) {        
+          var promessa = Util.lerDadosImagem(imagens[indice]).then((imagem: Imagem) => {
+            imagensBaixadas.push(imagem);
+          });
+  
+          promessas.push(promessa);
+        }
+      }      
 
       Promise.all(promessas).then(() => {
         this.httpClient.post(environment.backend + this.ROTA_POST, {
@@ -37,6 +39,8 @@ export class PostService {
           link: link
         }).subscribe((retorno) => {
           resolve(retorno);
+        }, err => {
+          reject(err);
         });
       });
     });
