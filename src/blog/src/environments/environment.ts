@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend: 'http://localhost:59877/'
+  backend: 'https://frame-back.azurewebsites.net/'
 };
 
 /*
