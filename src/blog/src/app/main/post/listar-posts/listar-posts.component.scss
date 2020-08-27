@@ -12,6 +12,19 @@
 
     grid-template-rows: auto;
 
+    .excluir-post {
+        float: right;
+        margin-right: 20px;
+
+        cursor: pointer;
+    }
+
+    .nome-criador {
+        font-size: 10px;
+        margin-left: 8px;
+        opacity: 0.8
+    }
+
     .post {
         margin-top: 5vh;
         margin-bottom: 5vh;       

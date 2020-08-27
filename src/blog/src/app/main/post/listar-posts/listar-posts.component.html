@@ -1,8 +1,9 @@
 <div class="main-container">
-    <div class="post" *ngFor="let post of posts">
+    <div class="post" *ngFor="let post of posts; let i = index">
         <mat-card>
             <mat-card-title>
-                {{post.titulo}}
+                <span>{{post.titulo}}<span class="nome-criador">por {{post.nomeCriador}}</span></span>
+                <mat-icon class="excluir-post" (click)="excluirPost(post, i)">clear</mat-icon>
             </mat-card-title>
             <mat-card-content>
                 <div class="imagens">

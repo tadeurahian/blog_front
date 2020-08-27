@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/shared/services/post/post.service';
-import { Post } from 'src/app/shared/models/post.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { Post } from '../../../shared/models/post.model';
+import { StorageService } from 'src/app/shared/services/storage/storage.service';
+import { Usuario } from 'src/app/shared/models/usuario.model';
+import { Constantes } from 'src/app/shared/constantes';
+import { Autenticacao } from 'src/app/shared/models/autenticacao.model';
 
 @Component({
   selector: 'app-listar-posts',
@@ -13,19 +16,9 @@ export class ListarPostsComponent implements OnInit {
 
   posts: Post[] = [];
 
-  configuracoesGaleria = [{
-    fullWidth: true,
-    imageDescription: false,
-    thumbnails: false,
-    preview: false,    
-    arrowPrevIcon: 'fa fa-chevron-left fa-2x',
-    arrowNextIcon: 'fa fa-chevron-right fa-2x',
-    imageAnimation: NgxGalleryAnimation.Slide,
-    imageSwipe: true
-  }];
-
   constructor(private postsService: PostService,
-    private snackBar: MatSnackBar,) { }
+              private snackBar: MatSnackBar,
+              private storage : StorageService) { }
 
   ngOnInit() {
     this.postsService.obterPosts().subscribe((retorno) => {
@@ -39,17 +32,27 @@ export class ListarPostsComponent implements OnInit {
     });
   }
 
-  obterImagens(imagens: string[]): NgxGalleryImage[] {
-    var imagensNgx = new Array<NgxGalleryImage>();    
+  excluirPost(post : Post, indiceArray : number) {
+    var autenticacao = this.storage.obter<Autenticacao>(Constantes.CHAVE_STORAGE_AUTH);
 
-    imagens.forEach(imagem => {
-      imagensNgx.push({
-        small: imagem,
-        medium: imagem,
-        big: imagem
-      });
-    });
+    if(autenticacao.usuario.id != post.idCriador)
+      this.snackBar.open("Você apenas pode deletar seus posts!", "Fechar");
+    else {
+      this.postsService.excluirPost(post.id).subscribe(retorno => {
+        if(retorno.sucesso) {
+          this.snackBar.open(retorno.mensagem, "Fechar");
+          this.removerPost(indiceArray);
+        }                  
+      }, err => {
+        this.snackBar.open(err.error, "Fechar");
+      })
+    }
+  }
 
-    return imagensNgx;
+  removerPost(indiceArray : number) { 
+    if(this.posts.length == 1)
+      this.posts = new Array<Post>();
+    else   
+      this.posts = this.posts.splice(indiceArray, 1);
   }
 }

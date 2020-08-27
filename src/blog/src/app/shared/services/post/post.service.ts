@@ -49,4 +49,8 @@ export class PostService {
   obterPosts() : Observable<RetornoPadrao<Post[]>> {
     return this.httpClient.get<RetornoPadrao<Post[]>>(environment.backend + this.ROTA_POST);
   }
+
+  excluirPost(idPost) : Observable<RetornoPadrao<string>> {
+    return this.httpClient.delete<RetornoPadrao<string>>(environment.backend + this.ROTA_POST + "/" + idPost);
+  }
 }

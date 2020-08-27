@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ListarPostsComponent } from './listar-posts/listar-posts.component';
 import { SliderModule } from 'angular-image-slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [CriarPostComponent, ListarPostsComponent],
@@ -19,11 +20,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,    
-    MatCardModule,        
+    MatCardModule,    
     FormsModule,    
     MatSnackBarModule,
     SliderModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ]
 })
 export class PostModule { }

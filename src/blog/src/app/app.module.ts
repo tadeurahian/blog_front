@@ -28,8 +28,7 @@ import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     LoginModule,
-    MainModule,
-    PostModule,
+    MainModule,    
     HttpClientModule,
     MatProgressSpinnerModule
   ],
